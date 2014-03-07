@@ -50,4 +50,32 @@ describe('htp', function() {
       expect(app.get('geographies')[0].type).to.eql('FeatureCollection');
     });
   });
+
+  describe('.keywords', function() {
+    describe('with an array of words', function() {
+      var app;
+
+      before(function() {
+        htp.keywords(['#foo','#bar']);
+        app = htp.__createApp__();
+      });
+
+      it('adds them to the list of keywords', function() {
+        expect(app.get('keywords')).to.eql(['#foo','#bar']);
+      });
+    });
+
+    describe('with a list of words', function() {
+      var app;
+
+      before(function() {
+        htp.keywords('#baz','#qux');
+        app = htp.__createApp__();
+      });
+
+      it('adds them to the list of keywords', function() {
+        expect(app.get('keywords')).to.eql(['#baz','#qux']);
+      });
+    });
+  });
 });
