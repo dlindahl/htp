@@ -43,5 +43,8 @@
   },
   "devDependencies": {
     "mocha": "~1.17.1"
+  },
+  "dependencies": {
+    "express": "~3.5.0"
   }
 }
