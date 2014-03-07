@@ -1,0 +1,43 @@
+{
+  "name": "htp",
+  "version": "0.0.1",
+  "description": "Express middleware to power tracking hashtags within geographic regions",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "npm prune"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dlindahl/htp.git"
+  },
+  "keywords": [
+    "hashtag",
+    "hashtags",
+    "geo",
+    "geojson"
+  ],
+  "author": "code4sac",
+  "contributors": [
+    {
+      "name": "Andy Axton"
+    },
+    {
+      "name": "Kaleb Clark"
+    },
+    {
+      "name": "Emma Fletcher"
+    },
+    {
+      "name": "Derek Lindahl",
+      "email": "derek.lindahl@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dlindahl/htp/issues"
+  },
+  "homepage": "https://github.com/dlindahl/htp",
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
