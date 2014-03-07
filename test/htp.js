@@ -1,7 +1,8 @@
 'use strict';
 
 var htp = require('../'),
-    expect = require('expect.js');
+    expect = require('expect.js'),
+    mockfs = require('mock-fs');
 
 describe('htp', function() {
   describe('.app', function() {
@@ -21,6 +22,32 @@ describe('htp', function() {
 
     it('adds the specified middleware as the authentication layer', function() {
       expect(app.get('authware')).to.be(mw);
+    });
+  });
+
+  describe('.geographies', function() {
+    var app;
+
+    before(function() {
+      mockfs({
+        'geo' : {
+          'atlantis.geojson': JSON.stringify({
+            'type':'FeatureCollection'
+          })
+        }
+      });
+
+      htp.geographies('./geo');
+      app = htp.__createApp__();
+    });
+
+    after(function() {
+      mockfs.restore();
+    });
+
+    it('adds each GeoJSON file to the :geographies setting', function() {
+      expect(app.get('geographies').length).to.eql(1);
+      expect(app.get('geographies')[0].type).to.eql('FeatureCollection');
     });
   });
 });
