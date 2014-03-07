@@ -32,7 +32,16 @@ describe('htp', function() {
       mockfs({
         'geo' : {
           'atlantis.geojson': JSON.stringify({
-            'type':'FeatureCollection'
+            'type':'FeatureCollection',
+            'properties': {
+              'keywords':['#htp','#atlantis']
+            }
+          }),
+          'babylon.geojson': JSON.stringify({
+            'type':'FeatureCollection',
+            'properties': {
+              'keywords':['#htp','#babylon']
+            }
           })
         }
       });
@@ -46,8 +55,12 @@ describe('htp', function() {
     });
 
     it('adds each GeoJSON file to the :geographies setting', function() {
-      expect(app.get('geographies').length).to.eql(1);
+      expect(app.get('geographies').length).to.eql(2);
       expect(app.get('geographies')[0].type).to.eql('FeatureCollection');
+    });
+
+    it('extracts lists of keywords to track', function() {
+      expect(app.get('keywords')).to.eql(['#htp','#atlantis','#babylon']);
     });
   });
 
